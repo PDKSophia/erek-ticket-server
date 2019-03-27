@@ -1,5 +1,6 @@
 const backendURL = '/wapp-backend/api'
 const miniURL = '/wapp/api'
+const types = require('./utils/error.code')
 /**
  * 显示提示错误函数
  * @param {Error} error
@@ -10,6 +11,20 @@ const showErrorModal = (code, msg, data) => {
     code: code,
     msg: msg || 'sorry, server error',
     data: data || msg
+  }
+}
+/**
+ * 判断是否携带token
+ * @param {String} token
+ * @param {Function} callback
+ */
+const checkAuthToken = token => {
+  if (!token) {
+    return showErrorModal(
+      types.global.INVALID_REQUEST,
+      '请求无效，未带有token',
+      '请求无效，未带有token'
+    )
   }
 }
 
@@ -85,9 +100,11 @@ const createTokenString = () => {
   }
   return _token
 }
+
 module.exports = {
   backendURL,
   miniURL,
   showErrorModal,
-  createTokenString
+  createTokenString,
+  checkAuthToken
 }

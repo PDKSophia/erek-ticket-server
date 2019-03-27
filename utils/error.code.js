@@ -4,11 +4,13 @@
  * @author PDK
  *
  * Created at     : 2019-03-21
- * Last modified  : 2019-03-24
+ * Last modified  : 2019-03-27
  */
 module.exports = {
   global: {
-    INVALID_REQUEST: -1
+    INVALID_REQUEST: -1,
+    UPLOAD_FILE_SUCCESS: 1,
+    UPLOAD_FILE_FAIL: -1
   },
   login: {
     RETRIEVE_EMAIL_CODE_SUCCESS: 1,
@@ -31,6 +33,18 @@ module.exports = {
     DELETE_FAIL: -1
   },
   staff: {
+    CREATE_SUCCESS: 1,
+    CREATE_FAIL: -1,
+    UPDATE_SUCCESS: 1,
+    UPDATE_FAIL: -1,
+    RETRIEVE_LIST_SUCCESS: 1,
+    RETRIEVE_LIST_FAIL: -1,
+    DELETE_SUCCESS: 1,
+    DELETE_FAIL: -1
+  },
+  city: {
+    RETRIEVE_STATUS_LIST_SUCCESS: 1,
+    RETRIEVE_STATUS_LIST_FAIL: -1,
     CREATE_SUCCESS: 1,
     CREATE_FAIL: -1,
     UPDATE_SUCCESS: 1,
