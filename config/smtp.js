@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   port: 465, //qq邮件服务所占用的端口
   auth: {
     user: '1063137960@qq.com',
-    pass: '123'
+    pass: 'ybpzacobcdojbcje'
   }
 })
 
