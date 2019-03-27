@@ -9,6 +9,7 @@
 const types = require('../../utils/error.code')
 const depsModel = require('../../models/backend/department')
 const showErrorModal = require('../../utils').showErrorModal
+const checkAuthToken = require('../../utils').checkAuthToken
 
 /**
  * @desc 分页获取部门列表
@@ -17,13 +18,7 @@ const showErrorModal = require('../../utils').showErrorModal
  */
 async function retrieveDepsList(req, params) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await depsModel.retrieveDepsList(params)
     return showErrorModal(
@@ -41,13 +36,7 @@ async function retrieveDepsList(req, params) {
  */
 async function createDepartment(req, payload) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await depsModel.createDepartment(payload)
     return showErrorModal(types.deps.CREATE_SUCCESS, '新增部门成功', result)
@@ -62,13 +51,7 @@ async function createDepartment(req, payload) {
  */
 async function updateDepartment(req, payload) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await depsModel.updateDepartment(payload)
     return showErrorModal(types.deps.UPDATE_SUCCESS, '编辑部门成功', result)
@@ -83,13 +66,7 @@ async function updateDepartment(req, payload) {
  */
 async function deleteDepartment(req, departId) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await depsModel.deleteDepartment(departId)
     return showErrorModal(types.deps.DELETE_SUCCESS, '删除部门成功', result)

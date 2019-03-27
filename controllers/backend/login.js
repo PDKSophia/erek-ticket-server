@@ -56,46 +56,57 @@ async function retrieveToken(req) {
   return new Promise((resolve, reject) => {
     redisClient.keys('sess:*', (error, keyList) => {
       let key = keyList[0]
-      console.log(key)
-      redisClient.get(key, async (err, data) => {
-        const { email_code } = typeof data == 'string' ? JSON.parse(data) : data
-        if (code != email_code) {
-          resolve(
-            showErrorModal(
-              types.login.CHECK_EMAIL_CODE_ERROR,
-              '验证码不正确',
-              '验证码不正确'
-            )
+      console.log('????', key)
+      if (!key) {
+        resolve(
+          showErrorModal(
+            types.login.CHECK_EMAIL_CODE_ERROR,
+            '服务器错误，请重新获取验证码',
+            '服务器错误，请重新获取验证码'
           )
-        } else {
-          const response = await loginModel.retrieveToken(
-            username,
-            password,
-            email
-          )
-          if (response.length === 0) {
+        )
+      } else {
+        redisClient.get(key, async (err, data) => {
+          const { email_code } =
+            typeof data == 'string' ? JSON.parse(data) : data
+          if (code != email_code) {
             resolve(
               showErrorModal(
-                types.login.LOGIN_FAIL,
-                '该账号不存在，请联系管理员',
-                null
+                types.login.CHECK_EMAIL_CODE_ERROR,
+                '验证码不正确',
+                '验证码不正确'
               )
             )
           } else {
-            req.session.user_name = response[0].username + response[0].email
-            let result = {
-              username: response[0].username,
-              token: response[0].token,
-              email: response[0].email,
-              role: response[0].role,
-              departmentId: response[0].departmentId
-            }
-            resolve(
-              showErrorModal(types.login.LOGIN_SUCCESS, '登陆成功', result)
+            const response = await loginModel.retrieveToken(
+              username,
+              password,
+              email
             )
+            if (response.length === 0) {
+              resolve(
+                showErrorModal(
+                  types.login.LOGIN_FAIL,
+                  '该账号不存在，请联系管理员',
+                  null
+                )
+              )
+            } else {
+              req.session.user_name = response[0].username + response[0].email
+              let result = {
+                username: response[0].username,
+                token: response[0].token,
+                email: response[0].email,
+                role: response[0].role,
+                departmentId: response[0].departmentId
+              }
+              resolve(
+                showErrorModal(types.login.LOGIN_SUCCESS, '登陆成功', result)
+              )
+            }
           }
-        }
-      })
+        })
+      }
     })
   })
 }

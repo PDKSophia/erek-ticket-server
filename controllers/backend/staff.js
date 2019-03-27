@@ -9,6 +9,7 @@
 const types = require('../../utils/error.code')
 const staffModel = require('../../models/backend/staff')
 const showErrorModal = require('../../utils').showErrorModal
+const checkAuthToken = require('../../utils').checkAuthToken
 
 /**
  * @desc 分页获取员工列表
@@ -17,13 +18,7 @@ const showErrorModal = require('../../utils').showErrorModal
  */
 async function retrieveStaffList(req, params) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await staffModel.retrieveStaffList(params)
     return showErrorModal(
@@ -41,13 +36,7 @@ async function retrieveStaffList(req, params) {
  */
 async function createStaff(req, payload) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await staffModel.createStaff(payload)
     return showErrorModal(types.deps.CREATE_SUCCESS, '新增员工成功', result)
@@ -62,13 +51,7 @@ async function createStaff(req, payload) {
  */
 async function updateStaff(req, payload) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await staffModel.updateStaff(payload)
     if (!result) {
@@ -87,13 +70,7 @@ async function updateStaff(req, payload) {
  */
 async function deleteStaff(req, departId) {
   const { xauttoken } = req.headers
-  if (!xauttoken) {
-    return showErrorModal(
-      types.global.INVALID_REQUEST,
-      '请求无效，未带有token',
-      '请求无效，未带有token'
-    )
-  }
+  await checkAuthToken(xauttoken)
   try {
     const result = await staffModel.deleteStaff(departId)
     return showErrorModal(types.deps.DELETE_SUCCESS, '删除员工成功', result)
