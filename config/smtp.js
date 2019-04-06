@@ -16,12 +16,12 @@ const transporter = nodemailer.createTransport({
   port: 465, //qq邮件服务所占用的端口
   auth: {
     user: '1063137960@qq.com',
-    pass: 'ybpzacobcdojbcje'
+    pass: ''
   }
 })
 
 // 发送内容设置
-const setMailOptions = function(email, type = 'code', data) {
+const setMailOptions = function (email, type = 'code', data) {
   let text = ''
   switch (type) {
     case 'code':

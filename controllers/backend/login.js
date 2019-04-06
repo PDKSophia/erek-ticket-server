@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-03-21
- * Last modified  : 2019-03-23
+ * Last modified  : 2019-04-06
  */
 const types = require('../../utils/error.code')
 const stmp = require('../../config/smtp')
@@ -83,6 +83,7 @@ async function retrieveToken(req) {
               password,
               email
             )
+            console.log('结果: ', response)
             if (response.length === 0) {
               resolve(
                 showErrorModal(

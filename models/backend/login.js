@@ -13,6 +13,7 @@ const mysql = require('../../config/connect')
  */
 const retrieveToken = async (username, password, email) => {
   const sql = `SELECT * FROM staff_backend WHERE username = "${username}" AND password = "${password}" AND email = "${email}"`
+
   try {
     const data = await mysql.query(sql)
     return data

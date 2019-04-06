@@ -16,7 +16,7 @@ const whitelist = [
   'http://localhost:6969'
 ]
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
@@ -45,7 +45,7 @@ app.use(
     rolling: true,
     saveUninitialized: false,
     cookie: {
-      maxAge: 60000,
+      maxAge: 120000,
       secure: false
     },
     store: new RedisStore(redisOptions)
@@ -60,7 +60,7 @@ routes(app)
 /**
  * 跨域
  */
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type') //预检请求使用
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS') //预检请求使用
@@ -70,6 +70,6 @@ app.use(function(req, res, next) {
  * 端口
  */
 app.set('port', process.env.PORT || 2442)
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
   console.log('Express server is running at : ' + app.get('port'))
 })
