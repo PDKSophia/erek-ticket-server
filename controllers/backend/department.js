@@ -17,32 +17,28 @@ const checkAuthToken = require('../../utils').checkAuthToken
  * @param {Number}  pageSize 页大小
  */
 async function retrieveDepsList(req, params) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
-  try {
-    const result = await depsModel.retrieveDepsList(params)
-    return showErrorModal(
-      types.deps.RETRIEVE_LIST_SUCCESS,
-      '获取部门列表成功',
-      result
-    )
-  } catch (err) {
-    showErrorModal(types.deps.RETRIEVE_LIST_FAIL, '获取部门列表失败', null)
-  }
+	const { xauttoken } = req.headers
+	await checkAuthToken(xauttoken)
+	try {
+		const result = await depsModel.retrieveDepsList(params)
+		return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取部门列表成功', result)
+	} catch (err) {
+		showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取部门列表失败', null)
+	}
 }
 /**
  * @desc 新增部门
  * @param {Object} payload 新增部门数据
  */
 async function createDepartment(req, payload) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
-  try {
-    const result = await depsModel.createDepartment(payload)
-    return showErrorModal(types.deps.CREATE_SUCCESS, '新增部门成功', result)
-  } catch (err) {
-    showErrorModal(types.deps.CREATE_FAIL, '新增部门失败', null)
-  }
+	const { xauttoken } = req.headers
+	await checkAuthToken(xauttoken)
+	try {
+		const result = await depsModel.createDepartment(payload)
+		return showErrorModal(types.global.CREATE_SUCCESS, '新增部门成功', result)
+	} catch (err) {
+		showErrorModal(types.global.CREATE_FAIL, '新增部门失败', null)
+	}
 }
 
 /**
@@ -50,14 +46,14 @@ async function createDepartment(req, payload) {
  * @param {Object} payload 编辑部门数据
  */
 async function updateDepartment(req, payload) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
-  try {
-    const result = await depsModel.updateDepartment(payload)
-    return showErrorModal(types.deps.UPDATE_SUCCESS, '编辑部门成功', result)
-  } catch (err) {
-    return showErrorModal(types.deps.UPDATE_FAIL, '编辑部门失败', null)
-  }
+	const { xauttoken } = req.headers
+	await checkAuthToken(xauttoken)
+	try {
+		const result = await depsModel.updateDepartment(payload)
+		return showErrorModal(types.global.UPDATE_SUCCESS, '编辑部门成功', result)
+	} catch (err) {
+		return showErrorModal(types.global.UPDATE_FAIL, '编辑部门失败', null)
+	}
 }
 
 /**
@@ -65,19 +61,19 @@ async function updateDepartment(req, payload) {
  * @param {Number} departId
  */
 async function deleteDepartment(req, departId) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
-  try {
-    const result = await depsModel.deleteDepartment(departId)
-    return showErrorModal(types.deps.DELETE_SUCCESS, '删除部门成功', result)
-  } catch (err) {
-    return showErrorModal(types.deps.DELETE_FAIL, '删除部门失败', null)
-  }
+	const { xauttoken } = req.headers
+	await checkAuthToken(xauttoken)
+	try {
+		const result = await depsModel.deleteDepartment(departId)
+		return showErrorModal(types.global.DELETE_SUCCESS, '删除部门成功', result)
+	} catch (err) {
+		return showErrorModal(types.global.DELETE_FAIL, '删除部门失败', null)
+	}
 }
 
 module.exports = {
-  retrieveDepsList,
-  createDepartment,
-  updateDepartment,
-  deleteDepartment
+	retrieveDepsList,
+	createDepartment,
+	updateDepartment,
+	deleteDepartment
 }
