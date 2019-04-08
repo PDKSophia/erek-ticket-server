@@ -13,6 +13,7 @@ const routes = require('./routes')
 const whitelist = [
   'http://localhost:2442',
   'http://localhost:2345',
+  'http://localhost:2346',
   'http://localhost:6969'
 ]
 const corsOptions = {
