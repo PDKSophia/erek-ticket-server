@@ -26,7 +26,7 @@ router.get('/get-status', async (req, res) => {
 /**
  * @desc 分页获取城市列表
  * @param {Number} pageNum 页数
- * @param {Number} pageSize页大小
+ * @param {Number} pageSize 页大小
  */
 router.get('/get-all', async (req, res) => {
   try {
@@ -42,7 +42,6 @@ router.get('/get-all', async (req, res) => {
  * @param {Object} jsondata
  */
 router.post('/add', async (req, res) => {
-  console.log('我应该是盈增。没问题啊')
   try {
     const response = await cityController.createCity(req, req.body)
     res.json(response)

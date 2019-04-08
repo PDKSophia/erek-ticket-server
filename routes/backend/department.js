@@ -14,7 +14,7 @@ const depsController = require('../../controllers/backend/department')
 /**
  * @desc 分页获取部门列表
  * @param {Number} pageNum 页数
- * @param {Number} pageSize页大小
+ * @param {Number} pageSize 页大小
  */
 router.get('/get-all', async (req, res) => {
   try {

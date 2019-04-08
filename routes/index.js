@@ -14,4 +14,5 @@ module.exports = function(app) {
   app.use(`${backendURL}/department`, require('./backend/department'))
   app.use(`${backendURL}/staff`, require('./backend/staff'))
   app.use(`${backendURL}/city`, require('./backend/city'))
+  app.use(`${backendURL}/bus`, require('./backend/bus'))
 }
