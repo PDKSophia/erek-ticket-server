@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-03-27
- * Last modified  : 2019-03-27
+ * Last modified  : 2019-04-10
  */
 const mysql = require('../../config/connect')
 
@@ -52,8 +52,9 @@ const retrieveStatusList = async () => {
  */
 const retrieveCityList = async params => {
   const { pageNum, pageSize } = params
-  const start = (pageNum - 1) * pageNum
-  const sql = `SELECT * FROM city LIMIT ${start}, ${pageSize}`
+  var startCount = pageNum === 1 ? 0 : (pageNum - 1) * pageSize
+  var endCount = pageNum * pageSize
+  const sql = `SELECT * FROM city LIMIT ${startCount}, ${endCount}`
   const list = await mysql.query(sql)
   const count = await retrieveLength()
   let result = {
@@ -70,8 +71,8 @@ const retrieveCityList = async params => {
  * @param {Object} payload
  */
 const createCity = async payload => {
-  const { city_name, city_status, city_desc, city_cover } = payload
-  const sql = `INSERT INTO city(city_name, city_status, city_desc, city_cover) VALUES ('${city_name}', '${city_status}', '${city_desc}', '${city_cover}')`
+  const { city_name, city_status, city_desc, city_cover, city_type } = payload
+  const sql = `INSERT INTO city(city_name, city_status, city_desc, city_cover, city_type) VALUES ('${city_name}', '${city_status}', '${city_desc}', '${city_cover}', '${city_type}')`
   await mysql.query(sql) // 执行插入语句
   const result = await retrieveLength()
   return result[0]

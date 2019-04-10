@@ -64,4 +64,58 @@ router.delete('/position/delete-id', async (req, res) => {
   }
 })
 
+
+/**
+ * @desc 分页获取汽车班次列表
+ * @param {Number} pageNum 页数
+ * @param {Number} pageSize 页大小
+ */
+router.get('/line/get-all', async (req, res) => {
+  try {
+    const response = await busController.retrieveLineList(req, req.query)
+    res.json(response)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 新增汽车班次
+ * @param {Object} jsondata
+ */
+router.post('/line/add', async (req, res) => {
+  try {
+    const response = await busController.createLine(req, req.body)
+    res.json(response)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 编辑汽车班次
+ * @param {Object} jsondata
+ */
+router.put('/line/update', async (req, res) => {
+  try {
+    const response = await busController.updateLine(req, req.body)
+    res.json(response)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 删除汽车班次
+ * @param {Number} lineId
+ */
+router.delete('/line/delete-id', async (req, res) => {
+  try {
+    const response = await busController.deleteLine(req, req.query.lineId)
+    res.json(response)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
 module.exports = router
