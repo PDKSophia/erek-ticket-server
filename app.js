@@ -14,6 +14,9 @@ const whitelist = [
   'http://localhost:2442',
   'http://localhost:2345',
   'http://localhost:2346',
+  'http://localhost:2347',
+  'http://localhost:2348',
+  'http://localhost:2349',
   'http://localhost:6969'
 ]
 const corsOptions = {

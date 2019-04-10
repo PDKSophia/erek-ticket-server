@@ -11,7 +11,7 @@ module.exports = {
   database: {
     DATABASE: 'erek_ticket',
     USER: 'root',
-    PASSWORD: 'root',
+    PASSWORD: 'password',
     HOST: '127.0.0.1'
   }
 }
