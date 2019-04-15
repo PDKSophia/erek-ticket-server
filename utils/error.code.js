@@ -29,6 +29,7 @@ module.exports = {
     LOGIN_FAIL: -1,
     GET_USERINFO_SUCCESS: 1,
     GET_USERINFO_FAIL: -1,
+    GET_OPENID_FAIL: -1
   },
   deps: {
     CREATE_SUCCESS: 1,
