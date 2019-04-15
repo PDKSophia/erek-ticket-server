@@ -11,7 +11,12 @@ module.exports = {
   database: {
     DATABASE: 'erek_ticket',
     USER: 'root',
-    PASSWORD: 'password',
+    PASSWORD: 'root',
     HOST: '127.0.0.1'
+  },
+  wechat: {
+    APPID: 'your appid',
+    APPSECRET: 'your app secret'
   }
 }
+

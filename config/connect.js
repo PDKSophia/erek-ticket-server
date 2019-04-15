@@ -21,12 +21,9 @@ var pool = mysql.createPool({
 var query = (sql, value) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, connection) => {
-      console.log("111111111")
       if (err) {
-        console.log("err:", err)
         reject(err)
       } else {
-        console.log("22222222")
         connection.query(sql, value, (err, rows) => {
           if (err) {
             reject(err)
