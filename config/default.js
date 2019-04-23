@@ -10,13 +10,13 @@ module.exports = {
   port: 3306,
   database: {
     DATABASE: 'erek_ticket',
-    USER: 'root',
-    PASSWORD: 'root',
+    USER: 'node_pppengdk',
+    PASSWORD: 'pdkadmin',
     HOST: '127.0.0.1'
   },
   wechat: {
-    APPID: 'your appid',
-    APPSECRET: 'your app secret'
+    APPID: 'wxe7677023eed72455',
+    APPSECRET: '6da271b3dd3e991d998a90267f144a05'
   }
 }
 
