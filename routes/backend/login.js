@@ -18,6 +18,7 @@ const loginController = require('../../controllers/backend/login')
 router.post('/email-code', async (req, res) => {
   try {
     const response = await loginController.retrieveCode(req, req.body)
+    console.log('咋回事啊？？', response)
     res.json(response)
   } catch (err) {
     throw new Error(err)

@@ -26,11 +26,15 @@ async function retrieveCode(req, payload) {
 		var emailOptions = stmp.setMailOptions(payload.email, 'code', code)
 		await stmp.transporter.sendMail(emailOptions)
 
+
+		console.log('妈呀，session 是什么?', req.session)
 		if (!req.session) {
-			return next(new Error('oh no')) // handle error
+			console.log('没session')
+			return new Error('oh no') // handle error
 		} else {
 			req.session.email = payload.email
 			req.session.email_code = code
+			console.log('缓存session', req.session)
 		}
 		return showErrorModal(types.login.RETRIEVE_EMAIL_CODE_SUCCESS, '验证码发送成功～', '验证码发送成功～')
 	} catch (error) {

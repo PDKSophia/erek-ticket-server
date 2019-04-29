@@ -54,8 +54,25 @@ async function retrieveStyleList(req) {
   }
 }
 
+/**
+ * @desc 根据 cityId 获取某一城市信息
+ * @param {Number} cityId
+ */
+async function retrieveCityInfo(req) {
+  const { xauttoken } = req.headers
+  const { cityId } = req.query
+  await checkAuthToken(xauttoken)
+  try {
+    const result = await cityModel.retrieveCityInfo(cityId)
+    return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取城市信息成功', result)
+  } catch (err) {
+    showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取城市信息失败', null)
+  }
+}
+
 module.exports = {
   retrieveTravelList,
   retrieveRecommendList,
-  retrieveStyleList
+  retrieveStyleList,
+  retrieveCityInfo
 }

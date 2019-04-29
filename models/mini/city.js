@@ -47,8 +47,18 @@ const retrieveStyleList = async () => {
   return result
 }
 
+/**
+ * @desc 根据 cityId 获取某一城市信息
+ * @param {Number} cityId
+ */
+const retrieveCityInfo = async cityId => {
+  const sql = `SELECT * FROM city WHERE id = ${cityId}`
+  return await mysql.query(sql)
+}
+
 module.exports = {
   retrieveTravelList,
   retrieveRecommendList,
-  retrieveStyleList
+  retrieveStyleList,
+  retrieveCityInfo
 }

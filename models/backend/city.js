@@ -53,7 +53,7 @@ const retrieveStatusList = async () => {
 const retrieveCityList = async params => {
   const { pageNum, pageSize } = params
   var startCount = pageNum === 1 ? 0 : (pageNum - 1) * pageSize
-  var endCount = pageNum * pageSize
+  var endCount = pageSize
   const sql = `SELECT * FROM city LIMIT ${startCount}, ${endCount}`
   const list = await mysql.query(sql)
   const count = await retrieveLength()
@@ -71,8 +71,8 @@ const retrieveCityList = async params => {
  * @param {Object} payload
  */
 const createCity = async payload => {
-  const { city_name, city_status, city_desc, city_cover, city_type } = payload
-  const sql = `INSERT INTO city(city_name, city_status, city_desc, city_cover, city_type) VALUES ('${city_name}', '${city_status}', '${city_desc}', '${city_cover}', '${city_type}')`
+  const { city_name, city_status, city_desc, city_cover, city_type, prefix } = payload
+  const sql = `INSERT INTO city(city_name, city_status, city_desc, city_cover, city_type, prefix) VALUES ('${city_name}', '${city_status}', '${city_desc}', '${city_cover}', '${city_type}', '${prefix}')`
   await mysql.query(sql) // 执行插入语句
   const result = await retrieveLength()
   return result[0]

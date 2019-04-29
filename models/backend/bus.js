@@ -24,7 +24,7 @@ const retrievePosLength = async () => {
 const retrievePosList = async params => {
   const { pageNum, pageSize } = params
   var startCount = pageNum === 1 ? 0 : (pageNum - 1) * pageSize
-  var endCount = pageNum * pageSize
+  var endCount = pageSize
   const sql = `SELECT * FROM bus_position LIMIT ${startCount}, ${endCount}`
   const list = await mysql.query(sql)
   const count = await retrievePosLength()
@@ -86,7 +86,7 @@ const retrieveLineLength = async () => {
 const retrieveLineList = async params => {
   const { pageNum, pageSize } = params
   var startCount = pageNum === 1 ? 0 : (pageNum - 1) * pageSize
-  var endCount = pageNum * pageSize
+  var endCount = pageSize
   const sql = `SELECT * FROM bus_line LIMIT ${startCount}, ${endCount}`
   const list = await mysql.query(sql)
   const count = await retrieveLineLength()

@@ -24,7 +24,7 @@ const retrieveLength = async () => {
 const retrieveDepsList = async params => {
   const { pageNum, pageSize } = params
   var startCount = pageNum === 1 ? 0 : (pageNum - 1) * pageSize
-  var endCount = pageNum * pageSize
+  var endCount = pageSize
   const sql = `SELECT * FROM department_backend WHERE depart_status = 'true' LIMIT ${startCount}, ${endCount}`
   const list = await mysql.query(sql)
   const count = await retrieveLength()

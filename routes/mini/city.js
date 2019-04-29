@@ -23,6 +23,7 @@ router.get('/travel/get-all', async (req, res) => {
     throw new Error(err)
   }
 })
+
 /**
  * @desc 获取热门推荐城市列表
  * @param {String} email
@@ -35,6 +36,7 @@ router.get('/recommend/get-all', async (req, res) => {
     throw new Error(err)
   }
 })
+
 /**
  * @desc 获取旅游主题城市列表
  * @param {String} email
@@ -47,5 +49,19 @@ router.get('/style/get-all', async (req, res) => {
     throw new Error(err)
   }
 })
+
+/**
+ * @desc 根据 cityId 获取某一城市信息
+ * @param {Number} cityId
+ */
+router.get('/get-id', async (req, res) => {
+  try {
+    const result = await cityController.retrieveCityInfo(req)
+    res.json(result)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
 
 module.exports = router
