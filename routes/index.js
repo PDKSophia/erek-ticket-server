@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-03-21
- * Last modified  : 2019-04-20
+ * Last modified  : 2019-04-30
  */
 const backendURL = require('../utils').backendURL
 const miniURL = require('../utils').miniURL
@@ -22,4 +22,5 @@ module.exports = function (app) {
   // 小程序
   app.use(`${miniURL}/login`, require('./mini/login'))
   app.use(`${miniURL}/city`, require('./mini/city'))
+  app.use(`${miniURL}/search`, require('./mini/search'))
 }

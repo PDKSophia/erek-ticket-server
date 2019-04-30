@@ -29,7 +29,7 @@ const retrieveOpenId = async (openId) => {
  * @param {String} avatar
  */
 const createOpenIdToken = async (nickname, avatar, openId, token) => {
-  const sql = `INSERT INTO user(nickname, avatar, openid, token, score, money, prefix) VALUES ('${nickname}', '${avatar}', '${openId}', '${token}', '0', '0', '' )`
+  const sql = `INSERT INTO user(nickname, avatar, openid, token, score, money, prefix) VALUES ('${nickname}', '${avatar}', '${openId}', '${token}', '1000', '0', '' )`
   try {
     await mysql.query(sql)
     return {
