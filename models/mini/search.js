@@ -38,10 +38,15 @@ const retrievePlaneLine = async payload => {
       return item
     }
   })
-  const sqlInStr = processSpliceSQL(filterArary)
-  const sql = `SELECT * FROM air_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
-  const list = await mysql.query(sql)
-  return list
+  // 没有符合条件数据
+  if (filterArary.length === 0) {
+    return []
+  } else {
+    const sqlInStr = processSpliceSQL(filterArary)
+    const sql = `SELECT * FROM air_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
+    const list = await mysql.query(sql)
+    return list
+  }
 }
 
 /**
@@ -59,10 +64,14 @@ const retrieveTrainLine = async payload => {
       return item
     }
   })
-  const sqlInStr = processSpliceSQL(filterArary)
-  const sql = `SELECT * FROM train_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
-  const list = await mysql.query(sql)
-  return list
+  if (filterArary.length === 0) {
+    return []
+  } else {
+    const sqlInStr = processSpliceSQL(filterArary)
+    const sql = `SELECT * FROM train_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
+    const list = await mysql.query(sql)
+    return list
+  }
 }
 
 /**
@@ -80,10 +89,14 @@ const retrieveBusLine = async payload => {
       return item
     }
   })
-  const sqlInStr = processSpliceSQL(filterArary)
-  const sql = `SELECT * FROM bus_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
-  const list = await mysql.query(sql)
-  return list
+  if (filterArary.length === 0) {
+    return []
+  } else {
+    const sqlInStr = processSpliceSQL(filterArary)
+    const sql = `SELECT * FROM bus_line WHERE startTime LIKE '%${startTime}%' AND id IN ${sqlInStr}`
+    const list = await mysql.query(sql)
+    return list
+  }
 }
 
 module.exports = {

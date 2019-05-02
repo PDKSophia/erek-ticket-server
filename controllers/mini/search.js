@@ -56,7 +56,7 @@ async function retrieveBusLine(req) {
   const { xauttoken } = req.headers
   await checkAuthToken(xauttoken)
   try {
-    const result = await searchModel.retrieveBusLine()
+    const result = await searchModel.retrieveBusLine(req.query)
     return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取大巴班次列表成功', result)
   } catch (err) {
     showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取大巴班次列表失败', null)
