@@ -23,4 +23,5 @@ module.exports = function (app) {
   app.use(`${miniURL}/login`, require('./mini/login'))
   app.use(`${miniURL}/city`, require('./mini/city'))
   app.use(`${miniURL}/search`, require('./mini/search'))
+  app.use(`${miniURL}/order`, require('./mini/order'))
 }
