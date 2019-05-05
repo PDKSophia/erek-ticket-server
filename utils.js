@@ -29,10 +29,10 @@ const checkAuthToken = token => {
 }
 
 /**
- * 随机生成token
+ * 随机生成一串length长度字符
  * @return {String} token
  */
-const createTokenString = () => {
+const createTokenString = length => {
   var seed = new Array(
     'A',
     'B',
@@ -83,6 +83,8 @@ const createTokenString = () => {
     'x',
     'y',
     'z',
+    '0',
+    '1',
     '2',
     '3',
     '4',
@@ -94,8 +96,8 @@ const createTokenString = () => {
   )
   seedlength = seed.length //数组长度
   var _token = ''
-  for (i = 0; i < 30; i++) {
-    j = Math.floor(Math.random() * seedlength)
+  for (let i = 0; i < length; i++) {
+    let j = Math.floor(Math.random() * seedlength)
     _token += seed[j]
   }
   return _token

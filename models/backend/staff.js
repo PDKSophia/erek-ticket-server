@@ -48,7 +48,7 @@ const retrieveStaffList = async params => {
  */
 const createStaff = async payload => {
   const { username, password, email, role, departmentId, grade, job } = payload
-  const token = createTokenString()
+  const token = createTokenString(30)
   const sql = `INSERT INTO staff_backend(username, token, password, email, role, departmentId, grade, job) VALUES ('${username}', '${token}', '${password}', '${email}', '${role}', '${departmentId}', '${grade}', '${job}')`
 
   try {

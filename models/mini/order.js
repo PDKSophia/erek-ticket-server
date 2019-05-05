@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-05-03
- * Last modified  : 2019-05-03
+ * Last modified  : 2019-05-05
  */
 const mysql = require('../../config/connect')
 const sd = require('silly-datetime')
@@ -27,11 +27,11 @@ const retrieveOrderLength = async type => {
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createPlaneOrder = async (payload) => {
+const createPlaneOrder = async payload => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
-  const order_code = createTokenString()
+  const order_code = createTokenString(20)
   const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
   try {
     await mysql.query(sql)
@@ -50,11 +50,11 @@ const createPlaneOrder = async (payload) => {
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createTrainOrder = async (payload) => {
+const createTrainOrder = async payload => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
-  const order_code = createTokenString()
+  const order_code = createTokenString(20)
   const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
   try {
     await mysql.query(sql)
@@ -73,11 +73,11 @@ const createTrainOrder = async (payload) => {
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createBusOrder = async (payload) => {
+const createBusOrder = async payload => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
-  const order_code = createTokenString()
+  const order_code = createTokenString(20)
   const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
   try {
     await mysql.query(sql)
