@@ -11,7 +11,6 @@ const cityModel = require('../../models/mini/city')
 const showErrorModal = require('../../utils').showErrorModal
 const checkAuthToken = require('../../utils').checkAuthToken
 
-
 /**
  * @desc 获取当季旅游地城市列表
  */
@@ -20,9 +19,17 @@ async function retrieveTravelList(req) {
   await checkAuthToken(xauttoken)
   try {
     const result = await cityModel.retrieveTravelList()
-    return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取当季旅游地城市列表成功', result)
+    return showErrorModal(
+      types.global.RETRIEVE_LIST_SUCCESS,
+      '获取当季旅游地城市列表成功',
+      result
+    )
   } catch (err) {
-    showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取当季旅游地城市列表失败', null)
+    showErrorModal(
+      types.global.RETRIEVE_LIST_FAIL,
+      '获取当季旅游地城市列表失败',
+      null
+    )
   }
 }
 
@@ -34,9 +41,17 @@ async function retrieveRecommendList(req) {
   await checkAuthToken(xauttoken)
   try {
     const result = await cityModel.retrieveRecommendList()
-    return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取热门推荐城市列表成功', result)
+    return showErrorModal(
+      types.global.RETRIEVE_LIST_SUCCESS,
+      '获取热门推荐城市列表成功',
+      result
+    )
   } catch (err) {
-    showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取热门推荐城市列表失败', null)
+    showErrorModal(
+      types.global.RETRIEVE_LIST_FAIL,
+      '获取热门推荐城市列表失败',
+      null
+    )
   }
 }
 
@@ -48,9 +63,17 @@ async function retrieveStyleList(req) {
   await checkAuthToken(xauttoken)
   try {
     const result = await cityModel.retrieveStyleList()
-    return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取旅游主题城市列表成功', result)
+    return showErrorModal(
+      types.global.RETRIEVE_LIST_SUCCESS,
+      '获取旅游主题城市列表成功',
+      result
+    )
   } catch (err) {
-    showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取旅游主题城市列表失败', null)
+    showErrorModal(
+      types.global.RETRIEVE_LIST_FAIL,
+      '获取旅游主题城市列表失败',
+      null
+    )
   }
 }
 
@@ -64,7 +87,11 @@ async function retrieveCityInfo(req) {
   await checkAuthToken(xauttoken)
   try {
     const result = await cityModel.retrieveCityInfo(cityId)
-    return showErrorModal(types.global.RETRIEVE_LIST_SUCCESS, '获取城市信息成功', result)
+    return showErrorModal(
+      types.global.RETRIEVE_LIST_SUCCESS,
+      '获取城市信息成功',
+      result
+    )
   } catch (err) {
     showErrorModal(types.global.RETRIEVE_LIST_FAIL, '获取城市信息失败', null)
   }

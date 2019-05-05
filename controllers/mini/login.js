@@ -34,39 +34,87 @@ async function retrieveCode(req) {
       }
       request(options, async (error, response, body) => {
         if (error) {
-          resolve(showErrorModal(types.login.GET_OPENID_FAIL, '获取用户openId失败', null))
+          resolve(
+            showErrorModal(
+              types.login.GET_OPENID_FAIL,
+              '获取用户openId失败',
+              null
+            )
+          )
         } else {
           //返回值的字符串转JSON
           let data = JSON.parse(body)
-          let token = jwt.sign({
-            code: req.body.code,
-            openid: data.openid
-          }, 'token', { expiresIn: '12h' })
+          let token = jwt.sign(
+            {
+              code: req.body.code,
+              openid: data.openid
+            },
+            'token',
+            { expiresIn: '12h' }
+          )
 
           // 1. 数据库是否存在此openId
           const openIdData = await loginModel.retrieveOpenId(data.openid)
           // 2. 存在openId,更新token
           if (openIdData.length !== 0) {
-            const updateToken = await loginModel.updateUserInfo(data.openid, token)
+            const updateToken = await loginModel.updateUserInfo(
+              data.openid,
+              token
+            )
             if (!updateToken) {
-              resolve(showErrorModal(types.global.UPDATE_FAIL, '获取用户token失败，请重试', null))
+              resolve(
+                showErrorModal(
+                  types.global.UPDATE_FAIL,
+                  '获取用户token失败，请重试',
+                  null
+                )
+              )
             } else {
-              resolve(showErrorModal(types.global.UPDATE_SUCCESS, '获取用户token成功', updateToken))
+              resolve(
+                showErrorModal(
+                  types.global.UPDATE_SUCCESS,
+                  '获取用户token成功',
+                  updateToken
+                )
+              )
             }
           }
           // 3. 不存在openId, 新增一个openId及token
           if (openIdData.length === 0) {
-            const result = await loginModel.createOpenIdToken(nickname, avatar, data.openid, token)
+            const result = await loginModel.createOpenIdToken(
+              nickname,
+              avatar,
+              data.openid,
+              token
+            )
             if (!result) {
-              resolve(showErrorModal(types.global.CREATE_FAIL, '新增用户信息失败，请重试', null))
+              resolve(
+                showErrorModal(
+                  types.global.CREATE_FAIL,
+                  '新增用户信息失败，请重试',
+                  null
+                )
+              )
             } else {
-              resolve(showErrorModal(types.global.CREATE_SUCCESS, '新增用户信息成功', result))
+              resolve(
+                showErrorModal(
+                  types.global.CREATE_SUCCESS,
+                  '新增用户信息成功',
+                  result
+                )
+              )
             }
           }
         }
       })
     } else {
-      resolve(showErrorModal(types.global.INVALID_REQUEST, '未携带code，请求失败', null))
+      resolve(
+        showErrorModal(
+          types.global.INVALID_REQUEST,
+          '未携带code，请求失败',
+          null
+        )
+      )
     }
   })
 }
@@ -80,7 +128,11 @@ async function retrieveUser(req) {
   try {
     const user = await loginModel.retrieveUser(xauthtoken)
     delete user[0].openid
-    return showErrorModal(types.login.GET_USERINFO_SUCCESS, '获取用户信息成功', user[0])
+    return showErrorModal(
+      types.login.GET_USERINFO_SUCCESS,
+      '获取用户信息成功',
+      user[0]
+    )
   } catch (err) {
     showErrorModal(types.login.GET_USERINFO_FAIL, '获取用户信息失败', null)
   }

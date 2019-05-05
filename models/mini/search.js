@@ -11,7 +11,7 @@ const mysql = require('../../config/connect')
 /**
  * @desc 拼接sql语句
  */
-const processSpliceSQL = function (arr) {
+const processSpliceSQL = function(arr) {
   let str = `(`
   for (let i = 0; i < arr.length; i++) {
     if (i !== arr.length - 1) {

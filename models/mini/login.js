@@ -10,9 +10,9 @@ const mysql = require('../../config/connect')
 
 /**
  * @desc 查看数据库是否存在openId
- * @param {String} openId 
+ * @param {String} openId
  */
-const retrieveOpenId = async (openId) => {
+const retrieveOpenId = async openId => {
   const sql = `SELECT * FROM user WHERE openId = "${openId}"`
   try {
     const data = await mysql.query(sql)
@@ -23,8 +23,8 @@ const retrieveOpenId = async (openId) => {
 }
 /**
  * @desc 新增一条openId及token
- * @param {String} openId 
- * @param {String} token 
+ * @param {String} openId
+ * @param {String} token
  * @param {String} nickname
  * @param {String} avatar
  */

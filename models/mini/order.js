@@ -88,8 +88,56 @@ const createBusOrder = async payload => {
   }
 }
 
+/**
+ * @desc 获取当前用户飞机所有订单
+ */
+const retrieveOrderPlane = async () => {
+  const sql = `SELECT * FROM order_line WHERE type = 'plane' ORDER BY id DESC`
+  try {
+    const list = await mysql.query(sql)
+    return {
+      list
+    }
+  } catch (err) {
+    return []
+  }
+}
+
+/**
+ * @desc 获取火车班次列表
+ */
+const retrieveOrderTrain = async () => {
+  const sql = `SELECT * FROM order_line WHERE type = 'train' ORDER BY id DESC`
+  try {
+    const list = await mysql.query(sql)
+    return {
+      list
+    }
+  } catch (err) {
+    return []
+  }
+}
+
+/**
+ * @desc 获取大巴班次列表
+ */
+const retrieveOrderBus = async () => {
+  const sql = `SELECT * FROM order_line WHERE type = 'bus' ORDER BY id DESC`
+  try {
+    const list = await mysql.query(sql)
+    return {
+      list
+    }
+  } catch (err) {
+    return []
+  }
+}
+
 module.exports = {
   createPlaneOrder,
   createTrainOrder,
-  createBusOrder
+  createBusOrder,
+  retrieveOrderPlane,
+  retrieveOrderTrain,
+  retrieveOrderBus
 }

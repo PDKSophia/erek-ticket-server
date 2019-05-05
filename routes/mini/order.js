@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-05-03
- * Last modified  : 2019-05-03
+ * Last modified  : 2019-05-05
  */
 
 const express = require('express')
@@ -56,6 +56,42 @@ router.post('/train/add', async (req, res) => {
 router.post('/bus/add', async (req, res) => {
   try {
     const result = await orderController.createBusOrder(req)
+    res.json(result)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 获取当前用户飞机所有订单
+ */
+router.get('/plane/get-all', async (req, res) => {
+  try {
+    const result = await orderController.retrieveOrderPlane(req)
+    res.json(result)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 获取当前用户火车所有订单获
+ */
+router.get('/train/get-all', async (req, res) => {
+  try {
+    const result = await orderController.retrieveOrderTrain(req)
+    res.json(result)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+/**
+ * @desc 获取当前用户大巴所有订单获
+ */
+router.get('/bus/get-all', async (req, res) => {
+  try {
+    const result = await orderController.retrieveOrderBus(req)
     res.json(result)
   } catch (err) {
     throw new Error(err)
