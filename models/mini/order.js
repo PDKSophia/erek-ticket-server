@@ -90,9 +90,10 @@ const createBusOrder = async payload => {
 
 /**
  * @desc 获取当前用户飞机所有订单
+ * @param {String} token 用户token
  */
-const retrieveOrderPlane = async () => {
-  const sql = `SELECT * FROM order_line WHERE type = 'plane' ORDER BY id DESC`
+const retrieveOrderPlane = async xauttoken => {
+  const sql = `SELECT * FROM order_line WHERE type = 'plane' AND userToken = '${xauttoken}' ORDER BY id DESC`
   try {
     const list = await mysql.query(sql)
     return {
@@ -105,9 +106,10 @@ const retrieveOrderPlane = async () => {
 
 /**
  * @desc 获取火车班次列表
+ * @param {String} token 用户token
  */
-const retrieveOrderTrain = async () => {
-  const sql = `SELECT * FROM order_line WHERE type = 'train' ORDER BY id DESC`
+const retrieveOrderTrain = async xauttoken => {
+  const sql = `SELECT * FROM order_line WHERE type = 'train' AND userToken = '${xauttoken}' ORDER BY id DESC`
   try {
     const list = await mysql.query(sql)
     return {
@@ -120,9 +122,10 @@ const retrieveOrderTrain = async () => {
 
 /**
  * @desc 获取大巴班次列表
+ * @param {String} token 用户token
  */
-const retrieveOrderBus = async () => {
-  const sql = `SELECT * FROM order_line WHERE type = 'bus' ORDER BY id DESC`
+const retrieveOrderBus = async xauttoken => {
+  const sql = `SELECT * FROM order_line WHERE type = 'bus' AND userToken = '${xauttoken}' ORDER BY id DESC`
   try {
     const list = await mysql.query(sql)
     return {

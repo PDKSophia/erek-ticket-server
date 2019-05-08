@@ -86,7 +86,7 @@ async function retrieveOrderPlane(req) {
   const { xauttoken } = req.headers
   await checkAuthToken(xauttoken)
   try {
-    const result = await orderModel.retrieveOrderPlane()
+    const result = await orderModel.retrieveOrderPlane(xauttoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户飞机所有订单成功',
@@ -108,7 +108,7 @@ async function retrieveOrderTrain(req) {
   const { xauttoken } = req.headers
   await checkAuthToken(xauttoken)
   try {
-    const result = await orderModel.retrieveOrderTrain()
+    const result = await orderModel.retrieveOrderTrain(xauttoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户火车所有订单获成功',
@@ -130,7 +130,7 @@ async function retrieveOrderBus(req) {
   const { xauttoken } = req.headers
   await checkAuthToken(xauttoken)
   try {
-    const result = await orderModel.retrieveOrderBus()
+    const result = await orderModel.retrieveOrderBus(xauttoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户大巴所有订单获成功',
