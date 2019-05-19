@@ -9,7 +9,7 @@
 const backendURL = require('../utils').backendURL
 const miniURL = require('../utils').miniURL
 
-module.exports = function (app) {
+module.exports = function(app) {
   // 后台管理
   app.use(`${backendURL}/files`, require('./global/upload'))
   app.use(`${backendURL}/login`, require('./backend/login'))
@@ -19,6 +19,7 @@ module.exports = function (app) {
   app.use(`${backendURL}/bus`, require('./backend/bus'))
   app.use(`${backendURL}/train`, require('./backend/train'))
   app.use(`${backendURL}/plane`, require('./backend/air'))
+  app.use(`${backendURL}/order`, require('./backend/order'))
   // 小程序
   app.use(`${miniURL}/login`, require('./mini/login'))
   app.use(`${miniURL}/city`, require('./mini/city'))
