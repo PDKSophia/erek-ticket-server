@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-05-03
- * Last modified  : 2019-05-05
+ * Last modified  : 2019-05-23
  */
 const mysql = require('../../config/connect')
 const sd = require('silly-datetime')
@@ -21,18 +21,19 @@ const retrieveOrderLength = async type => {
 
 /**
  * @desc 新增飞机订单
+ * @param {String} token        用户token
  * @param {Number} typeId       飞机航班的id
  * @param {String} type         类型type
  * @param {String} description  描述
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createPlaneOrder = async payload => {
+const createPlaneOrder = async (token, payload) => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
   const order_code = createTokenString(20)
-  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
+  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, userToken, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${token}', '${prefix}' )`
   try {
     await mysql.query(sql)
     const list = await retrieveOrderLength('plane')
@@ -44,18 +45,19 @@ const createPlaneOrder = async payload => {
 
 /**
  * @desc 新增火车订单
+ * @param {String} token        用户token
  * @param {Number} typeId       火车车次的id
  * @param {String} type         类型type
  * @param {String} description  描述
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createTrainOrder = async payload => {
+const createTrainOrder = async (token, payload) => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
   const order_code = createTokenString(20)
-  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
+  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, userToken, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${token}', '${prefix}' )`
   try {
     await mysql.query(sql)
     const list = await retrieveOrderLength('train')
@@ -67,18 +69,19 @@ const createTrainOrder = async payload => {
 
 /**
  * @desc 新增大巴订单
+ * @param {String} token        用户token
  * @param {Number} typeId       大巴车次的id
  * @param {String} type         类型type
  * @param {String} description  描述
  * @param {String} record       数据
  * @param {String} prefix       保留字段
  */
-const createBusOrder = async payload => {
+const createBusOrder = async (token, payload) => {
   const { typeId, type, description, record, prefix } = payload
   var createTime = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
   var status = 10
   const order_code = createTokenString(20)
-  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${prefix}' )`
+  const sql = `INSERT INTO order_line(typeId, type, description, createTime, status, record, order_code, userToken, prefix) VALUES ('${typeId}', '${type}', '${description}', '${createTime}', '${status}', '${record}', '${order_code}', '${token}', '${prefix}' )`
   try {
     await mysql.query(sql)
     const list = await retrieveOrderLength('bus')
@@ -105,7 +108,7 @@ const retrieveOrderPlane = async xauttoken => {
 }
 
 /**
- * @desc 获取火车班次列表
+ * @desc 获取当前用户火车所有订单
  * @param {String} token 用户token
  */
 const retrieveOrderTrain = async xauttoken => {
@@ -121,7 +124,7 @@ const retrieveOrderTrain = async xauttoken => {
 }
 
 /**
- * @desc 获取大巴班次列表
+ * @desc 获取当前用户大巴所有订单
  * @param {String} token 用户token
  */
 const retrieveOrderBus = async xauttoken => {

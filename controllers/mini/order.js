@@ -4,7 +4,7 @@
  * @author PDK
  *
  * Created at     : 2019-05-03
- * Last modified  : 2019-05-05
+ * Last modified  : 2019-05-23
  */
 const types = require('../../utils/error.code')
 const orderModel = require('../../models/mini/order')
@@ -20,10 +20,10 @@ const checkAuthToken = require('../../utils').checkAuthToken
  * @param {String} prefix       保留字段
  */
 async function createPlaneOrder(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.createPlaneOrder(req.body)
+    const result = await orderModel.createPlaneOrder(xauthtoken, req.body)
     return showErrorModal(
       types.global.CREATE_SUCCESS,
       '新增飞机航班订单成功',
@@ -43,10 +43,10 @@ async function createPlaneOrder(req) {
  * @param {String} prefix       保留字段
  */
 async function createTrainOrder(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.createTrainOrder(req.body)
+    const result = await orderModel.createTrainOrder(xauthtoken, req.body)
     return showErrorModal(
       types.global.CREATE_SUCCESS,
       '新增火车班次订单成功',
@@ -65,10 +65,10 @@ async function createTrainOrder(req) {
  * @param {String} prefix       保留字段
  */
 async function createBusOrder(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.createBusOrder(req.body)
+    const result = await orderModel.createBusOrder(xauthtoken, req.body)
     return showErrorModal(
       types.global.CREATE_SUCCESS,
       '新增大巴班次订单成功',
@@ -83,10 +83,10 @@ async function createBusOrder(req) {
  * @desc 获取当前用户飞机所有订单
  */
 async function retrieveOrderPlane(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.retrieveOrderPlane(xauttoken)
+    const result = await orderModel.retrieveOrderPlane(xauthtoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户飞机所有订单成功',
@@ -105,10 +105,10 @@ async function retrieveOrderPlane(req) {
  * @desc 获取当前用户火车所有订单获
  */
 async function retrieveOrderTrain(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.retrieveOrderTrain(xauttoken)
+    const result = await orderModel.retrieveOrderTrain(xauthtoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户火车所有订单获成功',
@@ -127,10 +127,10 @@ async function retrieveOrderTrain(req) {
  * @desc 获取当前用户大巴所有订单获
  */
 async function retrieveOrderBus(req) {
-  const { xauttoken } = req.headers
-  await checkAuthToken(xauttoken)
+  const { xauthtoken } = req.headers
+  await checkAuthToken(xauthtoken)
   try {
-    const result = await orderModel.retrieveOrderBus(xauttoken)
+    const result = await orderModel.retrieveOrderBus(xauthtoken)
     return showErrorModal(
       types.global.RETRIEVE_LIST_SUCCESS,
       '获取当前用户大巴所有订单获成功',
