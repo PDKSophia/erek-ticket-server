@@ -138,7 +138,31 @@ async function retrieveUser(req) {
   }
 }
 
+/**
+ * @desc 修改用户的prefix
+ * @param {String} prefix
+ * @return {Object}
+ */
+async function updateUserField(req) {
+  const { xauthtoken } = req.headers
+  const { prefix } = req.body
+  try {
+    const user = await loginModel.updateUserField(xauthtoken, prefix)
+    delete user[0].openid
+    return showErrorModal(
+      types.login.GET_USERINFO_SUCCESS,
+      '修改乘客列表成功',
+      user[0]
+    )
+  } catch (err) {
+    showErrorModal(types.login.GET_USERINFO_FAIL, '修改乘客列表失败', null)
+  }
+}
+
+updateUserField
+
 module.exports = {
   retrieveCode,
-  retrieveUser
+  retrieveUser,
+  updateUserField
 }

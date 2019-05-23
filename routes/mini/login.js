@@ -38,4 +38,19 @@ router.get('/get-info', async (req, res) => {
   }
 })
 
+/**
+ * @desc 修改用户的prefix
+ * @param {String} prefix
+ */
+router.put('/update-field', async (req, res) => {
+  try {
+    const result = await loginController.updateUserField(req)
+    res.json(result)
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+
+
 module.exports = router

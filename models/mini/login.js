@@ -63,9 +63,27 @@ const retrieveUser = async token => {
   const sql = `SELECT * FROM user WHERE token = "${token}"`
   return await mysql.query(sql)
 }
+
+/**
+ * @desc 修改用户的prefix
+ * @param {String} prefix
+ * @return {Object}
+ */
+const updateUserField = async (token, prefix) => {
+  try {
+    await mysql.query(
+      `UPDATE user SET prefix='${prefix}' WHERE token = "${token}"`
+    )
+    return await mysql.query(`SELECT * FROM user WHERE token = "${token}"`)
+  } catch (err) {
+    return null
+  }
+}
+
 module.exports = {
   retrieveOpenId,
   createOpenIdToken,
   updateUserInfo,
-  retrieveUser
+  retrieveUser,
+  updateUserField
 }
