@@ -14,7 +14,7 @@
     "connect-redis": "^3.4.1",
     "cors": "^2.8.5",
     "dotenv": "^4.0.0",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "express-formidable": "^1.0.0",
     "express-session": "^1.15.6",
     "express-winston": "^2.3.0",
